@@ -16,6 +16,7 @@ void f_menu(void) {
                 clear();
                 refresh();
                 game_win();
+                break;
             case 27:
                 clear();
                 refresh();

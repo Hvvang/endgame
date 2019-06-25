@@ -15,12 +15,8 @@ void *mv_window(void* thread_data) {
                     pthread_cancel(thread);
                     clear();
                     refresh();
-                    //wprintw(data->prevstr, "PRESS ANY KEY TO FINISH GAME");
-                    //wnoutrefresh(data->prevstr);
                     doupdate();               
-                    getch();
-                    endwin();
-                    exit(0); 
+                    pthread_exit(NULL);
                 }
                 wclear(data->win);
                 wnoutrefresh(data->win);
@@ -33,9 +29,6 @@ void *mv_window(void* thread_data) {
                 if(speed > 50000) {
                     speed -= 100;
                 } else {
-                //    clear();
-                //    doupdate();
-                //    pause();
                 }
 
             }
