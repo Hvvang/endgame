@@ -20,6 +20,8 @@ void f_menu(void) {
             case 27:
                 clear();
                 refresh();
+                endwin();
+                curs_set(TRUE);
                 exit(0);
         }
     }
