@@ -53,5 +53,6 @@ void destroy_win(WINDOW *local_win);
 void *mv_ship(void* thread_data);
 void *f_rand(void *param);
 void game_win();
+void f_menu(void);
 
 #endif

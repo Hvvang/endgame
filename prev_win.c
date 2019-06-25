@@ -77,5 +77,6 @@ void interface(WINDOW *ui){
     } 
     // wrefresh(ui); 
     sleep(5);
-
+    clear();
+    refresh();
 }

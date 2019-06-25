@@ -5,8 +5,8 @@ int main() {
 
 	WINDOW *ui = newwin(60, 170, 0, 0);      
 	interface(ui);
-
-	game_win();
+	f_menu();
+	// game_win();
 
 	endwin();
 }

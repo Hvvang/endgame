@@ -2,9 +2,7 @@
 
 void *mv_ship(void* thread_data) {
     pthrData *data = (pthrData*) thread_data;
-    keypad(stdscr, true);
-	curs_set(FALSE);
-    noecho();
+    window_pref();
     int x = 45;
     int y = 43;
 
