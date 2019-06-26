@@ -24,10 +24,8 @@ void *mv_window(void* thread_data) {
                     sign = 0;
                     break;
                 }
-
                 wclear(data->win);
                 wnoutrefresh(data->win);
-
 		        mvwin(data->win, i, j);
                 next_j = j + direction;
     	        if (next_j >= start_j + range || next_j < start_j - range || next_j < 2 || next_j >= cols - 12 ) {
@@ -68,8 +66,11 @@ void *mv_window(void* thread_data) {
                         break;
                     }
                 }
-                if(hp == 0) {
+                if(hp <= 0) {
                     pthread_cancel(thread);
+                    wclear(data->win);
+                    wclear(data->win2);
+                    wclear(data->win3);
                     clear();
                     refresh();
                     doupdate(); 

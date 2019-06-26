@@ -1,14 +1,19 @@
-CC=gcc
-CFLAGS=-std=c11 -Wall -Wextra -Werror -Wpedantic -lncurses -lpthread
-SRC=*.c
+NAME = endgame
+CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic -lncurses -lpthread
 
-all:
-	make install
+all: 
+	clang $(CFLAGS) *.c -o $(NAME) 
 
-install:
-	
-	$(CC) $(CFLAGS) *.c
+install: 
+	cp ./src/*.c .
+	cp ./inc/*.h .
+	clang $(CFLAGS) *.c -o $(NAME)
 
-example:
+uninstall: clean
+	rm -rf $(NAME)
 
-	$(CC) $(CFLAGS) example.c
+clean: uninstall
+	rm -rf *.c
+	rm -rf *.h
+
+reinstall: uninstall install

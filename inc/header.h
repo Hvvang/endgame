@@ -50,8 +50,20 @@ static const char ships[3][6][10] = {
 	}
 };
 
+int mx_strlen(const char *s);
 void window_pref(void);
+void print_point(int y, int x, int color);
+void print_point_t(int y, int x, int color);
+void print_point_up(int y, int x,int color);
+void print_space_map(void);
+void print_ship(int x);
+void last_hope(WINDOW *ui);
+void print_story(WINDOW *ui);
+void fire_anim(WINDOW *ui, char arr[12][62]);
+void interface(WINDOW *ui);
 void window_print(WINDOW *win, int color_pair, int set);
+void about(WINDOW *about_win);
+void menu(void);
 void window_filling(WINDOW *win);
 void *mv_window(void* thread_data);
 void interface(WINDOW *ui);
@@ -60,7 +72,7 @@ void destroy_win(WINDOW *local_win);
 void *mv_ship(void* thread_data);
 void *f_rand(void *param);
 void game_win();
-void f_menu(void);
 void window_state(pthrData *data, int score, int hp);
+void menu_filling(WINDOW *menu_win, int *i, char *item, char **list);
 
 #endif

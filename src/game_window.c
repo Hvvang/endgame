@@ -14,7 +14,7 @@ void game_win(void) {
 	ship3 = subwin(game_window, 6 , 10, 2, 15);
 	state_score = subwin(game_window, 1 , 13, 0, 1);
 	state_health = subwin(game_window, 1 , 15, 0, 84);
-	score_window = subwin(game_window, 6 , 15, 24, 35);
+	score_window = subwin(game_window, 1 , 15, 23, 46);
 
 	wnoutrefresh(stdscr);
     wnoutrefresh(game_window);
@@ -46,7 +46,7 @@ void game_win(void) {
 	
 	box(game_window, 0, 0);
 	wnoutrefresh(game_window);
-	wprintw(score_window, " SCORE %d  ", score);
+	wprintw(score_window, "SCORE %d  ", score);
     wnoutrefresh(score_window);
 	doupdate();
     usleep(5000000);
