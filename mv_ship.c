@@ -5,7 +5,7 @@ void *mv_ship(void* thread_data) {
     window_pref();
     int x = 45;
     int y = 43;
-
+    int i = 3;
     while(1) {
         *data->x = x;
         *data->y = y;
@@ -13,25 +13,29 @@ void *mv_ship(void* thread_data) {
         wclear(data->win);
         wnoutrefresh(data->win);
         mvwin(data->win, y, x);	
-        window_print(data->win, 2, 1);
+        window_print(data->win, i, 1);
         wnoutrefresh(data->win);
         switch (getch()) {
             case KEY_UP:
           	    if(y > 1)
                     y--;
-           		break;
+           		    break;
 	        case KEY_DOWN:
                 if(y < 43)
                     y++;
-                break;
+                    break;
             case KEY_LEFT:
                 if(x > 1)
                     x--;
-            	break;
+            	    break;
             case KEY_RIGHT:
                 if(x < 89)
                     x++;
-                break;
+                    break;
+            case 'c' :
+                if(i == 4)
+                    i = 1;
+                ++i;
         }
     }
 }

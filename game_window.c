@@ -36,7 +36,9 @@ void game_win(void) {
 	
 	pthread_create(&thread, NULL, mv_ship, (void *)&struct_ship);
 	pthread_create(&enemy, NULL, mv_window, (void *)&struct_enemy);
+
 	pthread_join(enemy, NULL);
+	
 	box(game_window, 0, 0);
 	wnoutrefresh(game_window);
 	wprintw(score_window, " SCORE %d  ", score);
