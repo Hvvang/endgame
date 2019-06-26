@@ -3,15 +3,18 @@
 void game_win(void) {
     int x_ship, y_ship;
 	int score = 0;
-    WINDOW *game_window, *enemy_ship, *ship, *ship2, *score_window, *ship3;
+    WINDOW *game_window, *enemy_ship, *ship, *ship2,  *ship3, *state_score, *state_health, *score_window;
 
     game_window = newwin(lines, cols, 0, 0 );
 	box(game_window, 0, 0);
+
 	enemy_ship = subwin(game_window, 6 , 10, 2, 3);
 	ship = subwin(game_window, 6 , 10, 43, 45);
     ship2 = subwin(game_window, 6 , 10, 2, 30);
 	ship3 = subwin(game_window, 6 , 10, 2, 15);
-	score_window = subwin(game_window, 6 , 10, 24, 35);
+	state_score = subwin(game_window, 1 , 13, 0, 1);
+	state_health = subwin(game_window, 1 , 15, 0, 84);
+	score_window = subwin(game_window, 6 , 15, 24, 35);
 
 	wnoutrefresh(stdscr);
     wnoutrefresh(game_window);
@@ -29,6 +32,8 @@ void game_win(void) {
 	struct_enemy.win = enemy_ship;
     struct_enemy.win2 = ship2;
 	struct_enemy.win3 = ship3; 
+	struct_enemy.state_score = state_score;
+	struct_enemy.state_health = state_health;
 	struct_enemy.score = &score;
 	struct_enemy.rand = arr;
 	struct_enemy.x = &x_ship;

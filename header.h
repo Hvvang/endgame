@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <locale.h>
 
 pthread_t  thread3, thread, enemy;
 
@@ -12,6 +13,8 @@ typedef struct{
 	WINDOW *win;
     WINDOW *win2;
 	WINDOW *win3;
+	WINDOW *state_score;
+	WINDOW *state_health;
 	int *score;
 	int *rand;
 	int *x;
@@ -58,5 +61,6 @@ void *mv_ship(void* thread_data);
 void *f_rand(void *param);
 void game_win();
 void f_menu(void);
+void window_state(pthrData *data, int score, int hp);
 
 #endif

@@ -25,11 +25,11 @@ void *mv_ship(void* thread_data) {
                     y++;
                     break;
             case KEY_LEFT:
-                if(x > 1)
+                if(x > 2)
                     x--;
             	    break;
             case KEY_RIGHT:
-                if(x < 89)
+                if(x < 88)
                     x++;
                     break;
             case 'c' :

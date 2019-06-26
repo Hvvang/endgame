@@ -1,28 +1,30 @@
 #include "header.h"
 
 void *mv_window(void* thread_data) {
+    setlocale(LC_CTYPE, "");
+
     pthrData *data = (pthrData*) thread_data;
     int speed = 80000;
     int score = 0;
     int next_j = 0;
     int direction = 1;
+    int hp = 3;
+    int sign = 1;
     while(1) {
-        
         for (int rn = 1; rn < 90; rn++) {
 	        int j = data->rand[rn];
             int start_j = j;
             int set = (rn % 2) ? 0 : 2;
 
-            for (int i = 1; i < lines - lines / 10 - 1; i++) {
+            for (int i = 2; i < lines - lines / 10 - 1; i++) {
 		        int range = 8 + rand() % 40;
                 if(mx_iscreck(*data->x, *data->y, j, i)) {
-                    pthread_cancel(thread);
-                    clear();
-                    refresh();
-  
-                    doupdate();             
-                    pthread_exit(NULL);
+                    write(1, "\a", 1);
+                    hp--;
+                    sign = 0;
+                    break;
                 }
+
                 wclear(data->win);
                 wnoutrefresh(data->win);
 
@@ -34,7 +36,6 @@ void *mv_window(void* thread_data) {
  		            j+= direction;
  		        }	
                 window_print(data->win, 1, set);
-;
               
                 if(speed > 78000) {
                     speed -= 100;
@@ -47,13 +48,12 @@ void *mv_window(void* thread_data) {
                     window_print(data->win2, 1, set);
  
                     if(mx_iscreck(*data->x, *data->y, sec_ship, i)) {
-                        pthread_cancel(thread);
-                        clear();
-                        refresh();
-
-                        doupdate(); 
-                        pthread_exit(NULL);
+                        write(1, "\a", 1);
+                        hp--;
+                        sign = 0;
+                        break;
                     }
+                    
                 }
                 if(score > 7) {
                     wclear(data->win3);
@@ -62,21 +62,27 @@ void *mv_window(void* thread_data) {
                     window_print(data->win3, 1, set);
  
                     if(mx_iscreck(*data->x, *data->y, data->rand[rn], i)) {
-                        pthread_cancel(thread);
-                        clear();
-                        refresh();
-
-                        doupdate(); 
-                        pthread_exit(NULL);
+                        write(1, "\a", 1);
+                        hp--;
+                        sign = 0;
+                        break;
                     }
                 }
-                wnoutrefresh(data->win3);
-                wnoutrefresh(data->win2);
-                wnoutrefresh(data->win);
-                doupdate();
+                if(hp == 0) {
+                    pthread_cancel(thread);
+                    clear();
+                    refresh();
+                    doupdate(); 
+                    pthread_exit(NULL);
+                }
+                window_state(data, score, hp);
                 usleep(speed);
             }
-            score++;
+            if(sign) { 
+                score++;
+            } else {
+                sign = 1;
+            }
             *data -> score = score;
         }    
     }
