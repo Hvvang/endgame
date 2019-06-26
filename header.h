@@ -11,6 +11,8 @@ pthread_t  thread3, thread, enemy;
 typedef struct{
 	WINDOW *win;
     WINDOW *win2;
+	WINDOW *win3;
+	int *score;
 	int *rand;
 	int *x;
 	int *y;
