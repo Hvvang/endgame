@@ -15,8 +15,7 @@ void *mv_window(void* thread_data) {
 //            doupdate();
             for (int i = 1; i < lines - lines / 10 - 1; i++) {
 
-                if(((*data->x >= data->rand[rn] && *data->x <=data->rand[rn] + 10) 
-                || (*data->x + 10 >= data->rand[rn] && *data->x + 10 <= data->rand[rn] + 10)) && ( *data->y < i + 5 && *data->y + 5 > i )) {
+                if(mx_iscreck(*data->x, *data->y, data->rand[rn], i)) {
                     pthread_cancel(thread);
                     clear();
                     refresh();
@@ -41,6 +40,13 @@ void *mv_window(void* thread_data) {
                     window_print(data->win2, 1, set);
                     wnoutrefresh(data->win2);
                     doupdate();
+                    if(mx_iscreck(*data->x, *data->y, sec_ship, i)) {
+                        pthread_cancel(thread);
+                        clear();
+                        refresh();
+                        doupdate();               
+                        pthread_exit(NULL);
+                    }
                 }
 
             }

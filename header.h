@@ -50,6 +50,7 @@ void window_print(WINDOW *win, int color_pair, int set);
 void window_filling(WINDOW *win);
 void *mv_window(void* thread_data);
 void interface(WINDOW *ui);
+bool mx_iscreck(int x_ship, int y_ship, int x_enemy, int y_enemy);
 void destroy_win(WINDOW *local_win);
 void *mv_ship(void* thread_data);
 void *f_rand(void *param);
